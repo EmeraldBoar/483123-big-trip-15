@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Константин Козлов](https://up.htmlacademy.ru/ecmascript/15/user/483123).
-* Наставник: `Неизвестно`.
+* Наставник: [Raman Lauryniuk](https://up.htmlacademy.ru/ecmascript/15/user/1666565).
 
 ---
 
