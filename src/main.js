@@ -7,7 +7,8 @@ import { createSortTemplate } from './view/sort.js';
 import { createEventsListTemplate } from './view/events-list.js';
 import { createEventsPointTemplate } from './view/events-point.js';
 import { createEventsEditPointTemplate } from './view/events-edit-point.js';
-import { createEventsNewPointTemplate } from './view/events-new-point.js';
+// import { createEventsNewPointTemplate } from './view/events-new-point.js';
+import { getPoint } from './mock/point.js';
 
 
 const render = (container, template, place) => {
@@ -35,15 +36,17 @@ const siteEventsElement = document.querySelector('.trip-events');
 render(siteEventsElement, createSortTemplate(), 'beforeend');
 render(siteEventsElement, createEventsListTemplate(), 'beforeend');
 
+const POINTS_COUNT = 20;
+const points = new Array(POINTS_COUNT).fill().map(getPoint);
 
 const siteEventsListElement = siteEventsElement.querySelector('.trip-events__list');
-render(siteEventsListElement, createEventsEditPointTemplate(), 'beforeend');
-render(siteEventsListElement, createEventsNewPointTemplate(), 'beforeend');
+render(siteEventsListElement, createEventsPointTemplate(points[1]), 'beforeend');
+render(siteEventsListElement, createEventsEditPointTemplate(points[1]), 'beforeend');
+// render(siteEventsListElement, createEventsNewPointTemplate(), 'beforeend');
 
-const TRIP_COUNT = 3;
 
-for (let i = 0; i < TRIP_COUNT; i += 1) {
-  render(siteEventsListElement, createEventsPointTemplate(), 'beforeend');
+for (let i = 1; i < POINTS_COUNT; i += 1) {
+  render(siteEventsListElement, createEventsPointTemplate(points[i]), 'beforeend');
 }
 
 
