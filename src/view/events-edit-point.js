@@ -1,4 +1,4 @@
-import { humanizeDate } from '../utils.js';
+import { humanizeDate, createElement } from '../utils.js';
 
 const createOffersTemplate = function (offers) {
   if (offers.length === 0) {
@@ -69,7 +69,7 @@ const createDetailsTemplate = (offers, description, pictures) => {
 };
 
 
-export const createEventsEditPointTemplate = (point) => {
+const createEventsEditPointTemplate = (point) => {
   const { type, price, offers } = point;
   const { name, description, pictures } = point.destination;
 
@@ -182,3 +182,22 @@ export const createEventsEditPointTemplate = (point) => {
   </form>
 </li>`;
 };
+
+export default class EditPoint {
+  constructor(point) {
+    this._point = point;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createEventsEditPointTemplate(this._point);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+}

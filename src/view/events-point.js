@@ -1,6 +1,6 @@
-import { humanizeDate } from '../utils.js';
+import { humanizeDate, createElement } from '../utils.js';
 
-export const createEventsPointTemplate = (point) => {
+const createEventsPointTemplate = (point) => {
   const { type, price, isFavorite } = point;
   const { name } = point.destination;
 
@@ -55,5 +55,24 @@ export const createEventsPointTemplate = (point) => {
   </div>
 </li>`;
 };
+
+export default class Point {
+  constructor(point) {
+    this._point = point;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createEventsPointTemplate(this._point);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+}
 
 
